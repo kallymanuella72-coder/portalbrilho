@@ -16,10 +16,10 @@
 
         <main class="vsl-section">
             <div class="video-wrapper">
-                <iframe src="https://player.vimeo.com/video/1220032304?title=0&byline=0&portrait=0&autoplay=1&muted=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                <iframe id="vimeo-player" src="https://player.vimeo.com/video/1220032304?title=0&byline=0&portrait=0&autoplay=1&muted=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
             </div>
 
-            <div class="cta-container">
+            <div class="cta-container" id="cta-container">
                 <a href="https://pay.hotmart.com/E106709691V?off=zmdi5ntj&bid=1784323054528&mcp_token=eyJwaWQiOjIxNzE5NzcsInNpZCI6MTc5MDQ4MjQyOCwiYXgiOiJlMDlkNmZjZjMxMjM2YWVlM2EyMWNjM2QyODMwYTI2MCIsInRzIjoxNzg3MjY5MjAyLCJleHAiOjE3ODk2ODg0MDJ9.ZmK3IFVshL_s0GqDH3XSH11rfHM-NmW_wFc0euirkzE&fbclid=PARlRTSAT0b6VwZG9mAmZkaWQWUM0ofjSdkRmZ3I0s9Xs3V0iLCQag8WV4dG4DYWVtAjEwAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp2DQC6RucB1MdKSL9u8qfDfcHhHSls6xESo55Go2QvIH_NuI7FMfhgT3sS1B_aem_tJQ07M3yFuW5xN5_NCdHig" class="cta-button" id="checkout-btn">
                     <span>Quero Garantir Minha Vaga</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,18 @@
         </main>
     </div>
 
+    <!-- API do Vimeo -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
+        // Lógica para mostrar o CTA apenas no fim do vídeo
+        const iframe = document.getElementById('vimeo-player');
+        const player = new Vimeo.Player(iframe);
+        const ctaContainer = document.getElementById('cta-container');
+
+        player.on('ended', function() {
+            ctaContainer.classList.add('show');
+        });
+
         // Micro-interação para o botão de checkout
         const btn = document.getElementById('checkout-btn');
         btn.addEventListener('mouseenter', () => {
