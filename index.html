@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação Exclusiva</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Descubra o Método Exclusivo do <span style="color: #16a34a;">Portal Brilho</span></h1>
+            <p>Assista ao vídeo abaixo com muita atenção e descubra como dar o próximo passo rumo à sua transformação.</p>
+        </header>
+
+        <main class="vsl-section">
+            <div class="video-wrapper">
+                <iframe id="vimeo-player" src="https://player.vimeo.com/video/1220032304?title=0&byline=0&portrait=0&autoplay=1&muted=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                
+                <!-- Overlay de Play Customizado -->
+                <div id="custom-play-overlay" class="play-overlay">
+                    <div class="play-button-large">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5V19L19 12L8 5Z" />
+                        </svg>
+                        <span>CLIQUE PARA OUVIR</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-container">
+                <a href="https://pay.hotmart.com/E106709691V?off=zmdi5ntj&bid=1784323054528&mcp_token=eyJwaWQiOjIxNzE5NzcsInNpZCI6MTc5MDQ4MjQyOCwiYXgiOiJlMDlkNmZjZjMxMjM2YWVlM2EyMWNjM2QyODMwYTI2MCIsInRzIjoxNzg3MjY5MjAyLCJleHAiOjE3ODk2ODg0MDJ9.ZmK3IFVshL_s0GqDH3XSH11rfHM-NmW_wFc0euirkzE&fbclid=PARlRTSAT0b6VwZG9mAmZkaWQWUM0ofjSdkRmZ3I0s9Xs3V0iLCQag8WV4dG4DYWVtAjEwAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp2DQC6RucB1MdKSL9u8qfDfcHhHSls6xESo55Go2QvIH_NuI7FMfhgT3sS1B_aem_tJQ07M3yFuW5xN5_NCdHig" class="cta-button" id="checkout-btn">
+                    <span>Quero Garantir Minha Vaga</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- API do Vimeo -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        // Lógica do Overlay de Play
+        const iframe = document.getElementById('vimeo-player');
+        const player = new Vimeo.Player(iframe);
+        const playOverlay = document.getElementById('custom-play-overlay');
+
+        playOverlay.addEventListener('click', () => {
+            player.setVolume(1);
+            player.play().then(() => {
+                playOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    playOverlay.style.display = 'none';
+                }, 300);
+            }).catch((error) => {
+                console.error('Erro ao dar play:', error);
+            });
+        });
+
+        // Micro-interação para o botão de checkout
+        const btn = document.getElementById('checkout-btn');
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transform = 'translateY(-2px) scale(1.02)';
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translateY(0) scale(1)';
+        });
+    </script>
+</body>
+</html>
