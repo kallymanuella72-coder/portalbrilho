@@ -55,12 +55,22 @@
         // Micro-interação para o botão de checkout e rastreamento
         const btn = document.getElementById('checkout-btn');
         
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); // Segura o redirecionamento
+            const url = btn.getAttribute('href');
+
             if (typeof gtag === 'function') {
                 gtag('event', 'click_checkout', {
                     'event_category': 'botao',
-                    'event_label': 'Garantir Vaga'
+                    'event_label': 'Garantir Vaga',
+                    'event_callback': function() {
+                        window.location.href = url;
+                    }
                 });
+                // Fallback de segurança caso o Google falhe
+                setTimeout(() => { window.location.href = url; }, 500);
+            } else {
+                window.location.href = url;
             }
         });
 
