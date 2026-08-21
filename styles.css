@@ -132,6 +132,20 @@ body {
     box-shadow: 0 10px 25px -5px rgba(34, 197, 94, 0.4), 0 8px 10px -6px rgba(34, 197, 94, 0.1);
     transition: all 0.3s ease;
     animation: pulseButton 2s infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    animation: shineSweep 3s infinite;
 }
 
 .cta-button svg {
@@ -184,13 +198,28 @@ body {
 
 @keyframes pulseButton {
     0% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+        box-shadow: 0 0 15px 0 rgba(34, 197, 94, 0.8), 0 0 0 0 rgba(34, 197, 94, 0.7);
+        transform: scale(1);
     }
-    70% {
-        box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+    50% {
+        box-shadow: 0 0 35px 5px rgba(34, 197, 94, 1), 0 0 0 15px rgba(34, 197, 94, 0);
+        transform: scale(1.03);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+        box-shadow: 0 0 15px 0 rgba(34, 197, 94, 0.8), 0 0 0 0 rgba(34, 197, 94, 0);
+        transform: scale(1);
+    }
+}
+
+@keyframes shineSweep {
+    0% {
+        left: -100%;
+    }
+    20% {
+        left: 200%;
+    }
+    100% {
+        left: 200%;
     }
 }
 
