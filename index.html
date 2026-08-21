@@ -30,7 +30,7 @@
             </div>
 
             <div class="cta-container" id="cta-container">
-                <a href="https://pay.hotmart.com/E106709691V?off=zmdi5ntj&bid=1784323054528&mcp_token=eyJwaWQiOjIxNzE5NzcsInNpZCI6MTc5MDQ4MjQyOCwiYXgiOiJlMDlkNmZjZjMxMjM2YWVlM2EyMWNjM2QyODMwYTI2MCIsInRzIjoxNzg3MjY5MjAyLCJleHAiOjE3ODk2ODg0MDJ9.ZmK3IFVshL_s0GqDH3XSH11rfHM-NmW_wFc0euirkzE&fbclid=PARlRTSAT0b6VwZG9mAmZkaWQWUM0ofjSdkRmZ3I0s9Xs3V0iLCQag8WV4dG4DYWVtAjEwAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp2DQC6RucB1MdKSL9u8qfDfcHhHSls6xESo55Go2QvIH_NuI7FMfhgT3sS1B_aem_tJQ07M3yFuW5xN5_NCdHig" class="cta-button" id="checkout-btn">
+                <a href="https://pay.hotmart.com/E106709691V?off=zmdi5ntj&bid=1784323054528&mcp_token=eyJwaWQiOjIxNzE5NzcsInNpZCI6MTc5MDQ4MjQyOCwiYXgiOiJlMDlkNmZjZjMxMjM2YWVlM2EyMWNjM2QyODMwYTI2MCIsInRzIjoxNzg3MjY5MjAyLCJleHAiOjE3ODk2ODg0MDJ9.ZmK3IFVshL_s0GqDH3XSH11rfHM-NmW_wFc0euirkzE&fbclid=PARlRTSAT0b6VwZG9mAmZkaWQWUM0ofjSdkRmZ3I0s9Xs3V0iLCQag8WV4dG4DYWVtAjEwAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp2DQC6RucB1MdKSL9u8qfDfcHhHSls6xESo55Go2QvIH_NuI7FMfhgT3sS1B_aem_tJQ07M3yFuW5xN5_NCdHig" class="cta-button" id="checkout-btn" target="_blank">
                     <span>Quero Garantir Minha Vaga</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -55,22 +55,12 @@
         // Micro-interação para o botão de checkout e rastreamento
         const btn = document.getElementById('checkout-btn');
         
-        btn.addEventListener('click', (e) => {
-            e.preventDefault(); // Segura o redirecionamento
-            const url = btn.getAttribute('href');
-
+        btn.addEventListener('click', () => {
             if (typeof gtag === 'function') {
                 gtag('event', 'click_checkout', {
                     'event_category': 'botao',
-                    'event_label': 'Garantir Vaga',
-                    'event_callback': function() {
-                        window.location.href = url;
-                    }
+                    'event_label': 'Garantir Vaga'
                 });
-                // Fallback de segurança caso o Google falhe
-                setTimeout(() => { window.location.href = url; }, 500);
-            } else {
-                window.location.href = url;
             }
         });
 
