@@ -54,10 +54,9 @@
 
         // Micro-interação para o botão de checkout e rastreamento
         const btn = document.getElementById('checkout-btn');
-        
         btn.addEventListener('click', () => {
             if (typeof gtag === 'function') {
-                gtag('event', 'click_checkout', {
+                gtag('event', 'begin_checkout', {
                     'event_category': 'botao',
                     'event_label': 'Garantir Vaga'
                 });
